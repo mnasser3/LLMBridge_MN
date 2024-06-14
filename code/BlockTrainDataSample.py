@@ -47,8 +47,9 @@ pd.set_option('display.max_colwidth', None)
 pd.set_option('display.expand_frame_repr', False)
 print("\nIO Format:\n",IO_format_df)
 IO_format_json = json_format(IO_format_df)
-print(IO_format_json[0])
 json_save(IO_format_json,'dataset.json')
+
+
 
 
 

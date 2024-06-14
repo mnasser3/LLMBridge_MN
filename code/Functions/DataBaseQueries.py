@@ -2,11 +2,11 @@ import pymysql
 import pandas as pd
 
 def run_query(command):
-    conn = pymysql.connect(host='bridge-tracker-test-20240528.cbdc52orwtsz.us-east-1.rds.amazonaws.com',
-                        user='rds_tracker1',
-                        password='hUyaMs9C4m3fEz84',
+    conn = pymysql.connect(host="bridge-tracker-test-20240528.cbdc52orwtsz.us-east-1.rds.amazonaws.com",
+                        user="rds_tracker1",
+                        password="hUyaMs9C4m3fEz84",
                         port=3306,
-                        db='bridge_tracker')
+                        db="bridge_tracker")
 
     sql_query = command
     df = pd.read_sql_query(sql_query, conn)
@@ -21,8 +21,8 @@ def get_input_info():
 
 
 def get_block_exercises(block_df):
-    blockid_list = block_df['blockid'].tolist()
-    blockid_list = ','.join(map(str, blockid_list))
+    blockid_list = block_df["blockid"].tolist()
+    blockid_list = ",".join(map(str, blockid_list))
 
     exercise_query = f"""
     SELECT bs.blockID, ei.exercise, bs.reps
@@ -35,7 +35,7 @@ def get_block_exercises(block_df):
     WHERE bs.blockID IN ({blockid_list})
     ORDER BY bs.blockID, bs.sequence;
     """
-    r = run_query(exercise_query).rename(columns={'blockID': 'blockid'})
-    r['reps'] = r['reps'].fillna(0)
-    r['reps'] = r['reps'].astype(int)
+    r = run_query(exercise_query).rename(columns={"blockID": "blockid"})
+    r["reps"] = r["reps"].fillna(0)
+    r["reps"] = r["reps"].astype(int)
     return r
