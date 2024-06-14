@@ -58,7 +58,7 @@ def json_format(df):
 def json_save(j,filename):
     data = json.loads(j)  
     with open(filename, 'w') as f:
-        json.dump(data, f)
+        json.dump(data, f, indent=1)
 
 def json_read(filename):
     with open(filename, "r") as file:
