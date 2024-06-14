@@ -6,6 +6,9 @@ from Functions.DataBaseQueries import *
 
 block_df=get_input_info()
 print("\nInput Example:\n", block_df)
+
+#----------- Get User Input Query from Block Name ----------------
+inputs=block_df
 #---------------------------------------
 
 #----------- II- User Output -------------
@@ -24,10 +27,10 @@ out_df = add_sets_for_output_df(out_df)
 pd.set_option('display.max_colwidth', None)
 pd.set_option('display.expand_frame_repr', False)
 print("\nOutput Example:\n")
-print((out_df['info']))
+print((out_df['info'][0][0]))
 
 
-#------Input/Output Table--------
+#------Input/Output Information pairs--------
 IO_merged_df = merge_IO(block_df,out_df)
 
 pd.set_option('display.max_colwidth', 25)
@@ -37,6 +40,16 @@ print(IO_merged_df)
 
 # Save the DataFrame to a CSV file
 IO_merged_df.to_csv('IO_Block_Sample.csv', index=False)
+
+#------Input/Output to JSON--------
+IO_format_df = add_IO_labels(IO_merged_df)
+pd.set_option('display.max_colwidth', None)
+pd.set_option('display.expand_frame_repr', False)
+print("\nIO Format:\n",IO_format_df)
+IO_format_json = json_format(IO_format_df)
+print(IO_format_json[0])
+json_save(IO_format_json,'dataset.json')
+
 
 
                                                                                                                               
