@@ -1,0 +1,3 @@
+This Folder is used to obtain the final dataset that will be used for training/testing the model
+1- run BlockTrainDataSample to get the initialdataset.json
+2- run DatasetPreProcess.ipynb to obtain the finaldataset.json
