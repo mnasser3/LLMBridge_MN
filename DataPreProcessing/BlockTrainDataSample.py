@@ -47,7 +47,7 @@ IO_format_df = add_IO_labels(IO_merged_df)
 # pd.set_option('display.expand_frame_repr', False)
 # print("\nIO Format:\n",IO_format_df)
 IO_format_json = json_format(IO_format_df)
-json_save(IO_format_json,'initialdataset.json')
+json_save(IO_format_json,'Dataset1_reps/initialdataset.json')
 
 
 
